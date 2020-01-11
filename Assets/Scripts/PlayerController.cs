@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameObject Menu;
     [SerializeField] private float Speed;
     [SerializeField] private float JumpForce;
     [SerializeField] private float FallForce;
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private bool ButtonHold = false;
     private float RunSpeed = 0.7f;
     private float JumpSpeed = 1.0f;
-    private bool Alive = true;
+    private bool Alive = false;
 
     private void Start()
     {
@@ -32,8 +33,12 @@ public class PlayerController : MonoBehaviour
         GridAnimator = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GridAnimation>();
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         CameraStartX = MainCamera.transform.position.x;
-        StepPosition = gameObject.transform.position.x;
-        Animator.SetBool("Run", true);
+        StepPosition = gameObject.transform.position.x;       
+    }
+
+    public void Run()
+    {
+        Alive = true;
     }
 
     private void FixedUpdate()
@@ -41,13 +46,14 @@ public class PlayerController : MonoBehaviour
         if (Alive)
         {
             Rb.velocity = new Vector2(Speed, Rb.velocity.y);
+            Animator.SetBool("Run", true);
         }
         MainCamera.transform.position = new Vector3(CameraStartX + gameObject.transform.position.x, MainCamera.transform.position.y, MainCamera.transform.position.z);
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && transform.position.y <= groundPosY + 0.05f)
+        if (Input.GetMouseButtonDown(0) && transform.position.y <= groundPosY + 0.05f && Alive)
         {
             InputJump = true;
             Animator.SetTrigger("Jump");
@@ -102,10 +108,10 @@ public class PlayerController : MonoBehaviour
             }               
             else if (!InputJump)
             {
-                transform.Translate(Vector3.down * (FallForce / (1f + (2f * System.Convert.ToSingle(ButtonHold)))) * Time.smoothDeltaTime);
+                transform.Translate(Vector3.down * (FallForce / (1f + (2.5f * Convert.ToSingle(ButtonHold)))) * Time.smoothDeltaTime);
                 if (ButtonHold)
                 {
-                    Animator.SetFloat("JumpSpeed", JumpSpeed * 0.4f);
+                    Animator.SetFloat("JumpSpeed", JumpSpeed * 0.3f);
                 }
                 else
                 {
@@ -130,6 +136,7 @@ public class PlayerController : MonoBehaviour
             Rb.velocity = new Vector2(0, Rb.velocity.y);
             Animator.SetTrigger("Death");
             gameObject.GetComponent<PlayerController>().enabled = false;
+            Menu.GetComponent<GameMenuController>().DeathMenu();
         }
     }
 }

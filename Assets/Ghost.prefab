@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5393946128209335723}
   - component: {fileID: 5393946128209335724}
   - component: {fileID: 5393946128209335725}
+  - component: {fileID: 8432069989330850326}
+  - component: {fileID: 4060915633357009206}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Enemy
@@ -137,3 +139,49 @@ PolygonCollider2D:
       - {x: 0.2837867, y: -0.093440406}
       - {x: 0.14965841, y: 0.13923177}
       - {x: -0.13502716, y: 0.29483265}
+--- !u!60 &8432069989330850326
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5393946128209335726}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.28406638, y: 0.2017317}
+      - {x: -0.28697258, y: -0.05427052}
+      - {x: -0.20965157, y: -0.11871794}
+      - {x: -0.071718186, y: -0.25696108}
+      - {x: -0.0028464196, y: -0.28001156}
+      - {x: 0.14678209, y: -0.31157112}
+      - {x: 0.2837867, y: -0.093440406}
+      - {x: 0.14965841, y: 0.13923177}
+      - {x: -0.13502716, y: 0.29483265}
+--- !u!114 &4060915633357009206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5393946128209335726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67bbc0acac1ab848bf58449fdf2c00c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
